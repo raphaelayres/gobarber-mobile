@@ -51,7 +51,7 @@ export default function SignIn({navigation}) {
             placeholder="Sua senha secreta"
             ref={passwordRef}
             returnKeyType="send"
-            onSubmitEditing={() => handleSubmit}
+            onSubmitEditing={handleSubmit}
             value={password}
             onChangeText={setPassword}
           />

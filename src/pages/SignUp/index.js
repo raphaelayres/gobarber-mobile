@@ -66,11 +66,11 @@ export default function SignUp({navigation}) {
             placeholder="Sua senha secreta"
             ref={passwordRef}
             returnKeyType="send"
-            onSubmitEditing={() => handleSubmit}
+            onSubmitEditing={handleSubmit}
             value={password}
             onChangeText={setPassword}
           />
-          <SubmitButton loading={loading} onPress={() => {}}>
+          <SubmitButton loading={loading} onPress={handleSubmit()}>
             Criar conta
           </SubmitButton>
         </Form>
