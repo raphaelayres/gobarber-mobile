@@ -1,7 +1,7 @@
 import React from 'react';
-import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import SignIn from './pages/SignIn';
@@ -17,7 +17,7 @@ export default (isSigned = false) =>
   createAppContainer(
     createSwitchNavigator(
       {
-        Sign: createSwitchNavigator({SignIn, SignUp}),
+        Sign: createSwitchNavigator({ SignIn, SignUp }),
         App: createBottomTabNavigator(
           {
             Dashboard,
@@ -62,6 +62,7 @@ export default (isSigned = false) =>
             Profile,
           },
           {
+            resetOnBlur: true,
             tabBarOptions: {
               keyboardHidesTabBar: true,
               activeTintColor: '#FFF',

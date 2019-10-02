@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Background from '~/Components/Background';
 import DateInput from '~/Components/DateInput';
 
 import api from '~/services/api';
 
-import {Container, HourList, Hour, Title} from './styles';
+import { Container, HourList, Hour, Title } from './styles';
 
-export default function SelectDateTime({navigation}) {
+export default function SelectDateTime({ navigation }) {
   const [date, setDate] = useState(new Date());
   const [hours, setHours] = useState([]);
 
@@ -28,6 +28,13 @@ export default function SelectDateTime({navigation}) {
     loadAvailable();
   }, [date, provider.id]);
 
+  function handleSelectHour(time) {
+    navigation.navigate('Confirm', {
+      provider,
+      time,
+    });
+  }
+
   return (
     <Background>
       <Container>
@@ -35,8 +42,10 @@ export default function SelectDateTime({navigation}) {
         <HourList
           data={hours}
           keyExtractor={item => item.time}
-          renderItem={({item}) => (
-            <Hour enable={item.available} onPress={() => {}}>
+          renderItem={({ item }) => (
+            <Hour
+              enable={item.available}
+              onPress={() => handleSelectHour(item.value)}>
               <Title>{item.time}</Title>
             </Hour>
           )}
@@ -46,7 +55,7 @@ export default function SelectDateTime({navigation}) {
   );
 }
 
-SelectDateTime.navigationOptions = ({navigation}) => ({
+SelectDateTime.navigationOptions = ({ navigation }) => ({
   title: 'Selecione o horário',
   headerLeft: () => (
     <TouchableOpacity
